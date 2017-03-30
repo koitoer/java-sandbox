@@ -24,6 +24,22 @@
     </dependency>
     -->
 
+    <!-- https://mvnrepository.com/artifact/com.ning/async-http-client -->
+    <dependency>
+      <groupId>com.ning</groupId>
+      <artifactId>async-http-client</artifactId>
+      <version>1.9.40</version>
+    </dependency>
+
+
+    <!-- https://mvnrepository.com/artifact/io.reactivex/rxnetty -->
+    <dependency>
+      <groupId>io.reactivex</groupId>
+      <artifactId>rxnetty</artifactId>
+      <version>0.4.4</version>
+    </dependency>
+
+
     <!-- https://mvnrepository.com/artifact/io.reactivex/rxjava -->
     <dependency>
       <groupId>io.reactivex</groupId>

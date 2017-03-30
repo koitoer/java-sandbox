@@ -37,7 +37,7 @@ public class CompetableFutureExample {
                         (String user1, String location) ->
                                 agencies.stream().map(agency -> agency.searchAsync(user1, location))
                                         .reduce((f1,f2) -> f1.applyToEither(f2, Function.identity())).get())
-                        .thenCompose(Function.identity()).thenCompose(comp::bookAsync);
+                        .thenCompose(Function.identity()).thenCompose(CompetableFutureExample::bookAsync);
 
         System.out.println(ticket.get());
 
@@ -65,15 +65,15 @@ public class CompetableFutureExample {
     }
 
 
-    CompletableFuture<String> findByIdAsync(long id){
+    static CompletableFuture<String> findByIdAsync(long id){
         return CompletableFuture.supplyAsync(() -> "Koitoer");
     }
 
-    CompletableFuture<String> locateAsyn(){
+    static CompletableFuture<String> locateAsyn(){
         return CompletableFuture.supplyAsync(() -> "Mexico");
     }
 
-    CompletableFuture<String> bookAsync(String flight){
+    static CompletableFuture<String> bookAsync(String flight){
         return CompletableFuture.supplyAsync(() -> flight);
     }
 
@@ -83,7 +83,7 @@ public class CompetableFutureExample {
         return "SS"+user+geolocation;
     }
 
-    private static class Agency {
+    public static class Agency {
 
         private String name;
 
