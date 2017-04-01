@@ -11,6 +11,8 @@ public class User {
 
     private String password;
 
+    private int[] pin;
+
     private String name;
 
     public User() {
@@ -20,10 +22,11 @@ public class User {
         this.id = id;
     }
 
-    public User(Long id, String userId, String password, String name) {
+    public User(Long id, String userId, String password, int[] pin, String name) {
         this.id = id;
         this.userId = userId;
         this.password = password;
+        this.pin = pin;
         this.name = name;
     }
 
