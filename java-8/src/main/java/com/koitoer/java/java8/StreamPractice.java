@@ -23,8 +23,8 @@ public class StreamPractice {
         Optional<String> ws = words.stream().filter(s ->  !s.isEmpty()).reduce((a, b) -> a + " " + b);
         System.out.println(ws);
 
-        ws = words.stream().filter(s ->  !s.isEmpty()).collect(Collectors.joining(" "));
-        System.out.println(ws);
+      //  ws = words.stream().filter(s ->  !s.isEmpty()).collect(Collectors.joining(" "));
+       // System.out.println(ws);
 
     }
 
