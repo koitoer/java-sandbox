@@ -1,5 +1,7 @@
 package com.koitoer.rx;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -15,8 +17,19 @@ public class AppOptional {
         optional = Optional.ofNullable(null);
         System.out.println(optional.orElse("B"));
 
-        optional = Optional.of(null);
-        System.out.println(optional.orElse("B"));
+
+        //Optional a = (Optional) Optional.empty().orElseThrow(() -> new RuntimeException("JAVA"));
+       // System.out.println(a.get());
+
+        List<Employee> emps = new ArrayList<>();
+        emps.add(new Employee("Roy1",32));
+        emps.add(new Employee("Roy2",12));
+        emps.add(new Employee("Roy3",22));
+        emps.add(new Employee("Roy4",42));
+        emps.add(new Employee("Roy5",52));
+
+        Integer as = emps.stream().mapToInt(e -> e.getSalary()).reduce((a,b)->Math.max(a, b)).getAsInt();
+        System.out.println("Max " + as);
 
     }
 
