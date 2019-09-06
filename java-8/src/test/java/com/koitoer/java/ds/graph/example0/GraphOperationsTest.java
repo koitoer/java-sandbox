@@ -12,6 +12,8 @@ public class GraphOperationsTest {
 
         GraphOperations graphOperations = new GraphOperations();
         graphOperations.bfs(graphExample.adjacentList);
+        graphOperations.bfsWithQueue(graphExample.adjacentList);
+
 
     }
 }
