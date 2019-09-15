@@ -37,7 +37,19 @@ public class Example {
         boolean o2 = (Boolean)e2.evaluate(jc);
         Assertions.assertThat(o2).isTrue();
 
+        // Create an expression
+        jc.set("foo", new Example());
+        String trueExpr2 = "numberOfBooking >= 2 and numberOfReviews < 0 and liveDate < 90 and (olb  == true and ipm == false) and foo.aComplexAssertion(liveDate)";
+        JexlExpression e3 = jexl.createExpression( trueExpr2 );
 
+        // Now evaluate the expression, getting the result
+        boolean o4 = (Boolean)e3.evaluate(jc);
+        Assertions.assertThat(o4).isFalse();
+    }
+
+
+    public boolean aComplexAssertion(Integer liveDate){
+        return true;
     }
 
 }
