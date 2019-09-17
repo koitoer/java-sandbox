@@ -5,14 +5,11 @@ import java.util.Map;
 
 import org.junit.Test;
 
-public class Solution6 {
+public class Solution567 {
 
     @Test
     public void test1() {
         checkInclusion2("hello", "ooolleoooleh");
-
-        //checkInclusion("ab", "acdabar");
-
     }
 
 
