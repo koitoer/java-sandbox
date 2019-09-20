@@ -12,15 +12,15 @@ import org.junit.Test;
 public class Solution867 {
 
     @Test
-    public void test1(){
-        Assertions.assertThat(new Solution867().transpose(new int[][]{{1,2,3},{4,5,6},{7,8,9}}))
-            .isEqualTo(new int[][] {{1,4,7},{2,5,8},{3,6,9}});
+    public void test1() {
+        Assertions.assertThat(new Solution867().transpose(new int[][] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } }))
+            .isEqualTo(new int[][] { { 1, 4, 7 }, { 2, 5, 8 }, { 3, 6, 9 } });
     }
 
     @Test
-    public void test2(){
-        Assertions.assertThat(new Solution867().transpose(new int[][]{{3}}))
-            .isEqualTo(new int[][]{{3}});
+    public void test2() {
+        Assertions.assertThat(new Solution867().transpose(new int[][] { { 3 } }))
+            .isEqualTo(new int[][] { { 3 } });
     }
 
     public int[][] transpose(int[][] A) {
@@ -28,13 +28,13 @@ public class Solution867 {
         int rows = A.length;
         int cols = A[0].length;
 
-        if(rows == 1 && cols == 1)
+        if (rows == 1 && cols == 1)
             return A;
 
         int[][] m = new int[cols][rows];
 
-        for(int i = 0; i<cols; i++){
-            for(int j = 0; j<rows; j++){
+        for (int i = 0; i < cols; i++) {
+            for (int j = 0; j < rows; j++) {
                 m[i][j] = A[j][i];
             }
         }
