@@ -3,7 +3,7 @@ package com.koitoer.java.let.backtracking;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
-public class Solution64 {
+public class Solution64a {
 
     @Test
     public void test1() {
@@ -12,10 +12,10 @@ public class Solution64 {
             { 1, 5, 1 },
             { 4, 2, 1 }
         };
-        Assertions.assertThat(new Solution64().minPathSum(a)).isEqualTo(7);
+        Assertions.assertThat(new Solution64a().minPathSum(a)).isEqualTo(7);
 
         int[][] b = { { 1, 2, 5 }, { 3, 2, 1 } };
-        Assertions.assertThat(new Solution64().minPathSum(b)).isEqualTo(6);
+        Assertions.assertThat(new Solution64a().minPathSum(b)).isEqualTo(6);
 
         int[][] c = { { 5, 0, 1, 1, 2, 1, 0, 1, 3, 6, 3, 0, 7, 3, 3, 3, 1 },
             { 1, 4, 1, 8, 5, 5, 5, 6, 8, 7, 0, 4, 3, 9, 9, 6, 0 },
@@ -32,7 +32,7 @@ public class Solution64 {
             { 9, 5, 8, 6, 4, 4, 3, 9, 8, 1, 1, 8, 7, 7, 3, 6, 9 },
             { 7, 2, 3, 1, 6, 3, 6, 6, 6, 3, 2, 3, 9, 9, 4, 4, 8 } };
 
-        Assertions.assertThat(new Solution64().minPathSum(c)).isEqualTo(83);
+        Assertions.assertThat(new Solution64a().minPathSum(c)).isEqualTo(83);
 
         /**
         int[][] x =
@@ -1041,70 +1041,31 @@ public class Solution64 {
 
     }
 
-    int maxGlobal = Integer.MAX_VALUE;
 
     public int minPathSum(int[][] grid) {
-        int rows = grid.length;
-        int columns = grid[0].length;
-        int[][] p = new int[rows][columns];
-        fill(p);
-        visitPosition(0, 0, p, 0, grid);
-        return p[rows - 1][columns - 1];
+        int[][] p = new int[grid.length][grid[0].length];
+        return visitPosition(0, 0, p, grid);
     }
 
-    private void visitPosition(int row, int column, int[][] p, int sum, int[][] grid) {
-        if (row >= p.length) {
-            return;
+    private int visitPosition(int row, int column, int[][] p, int[][] grid) {
+        if (row >= p.length || column >= p[0].length) {
+            return Integer.MAX_VALUE;
         }
 
-        if (column >= p[0].length) {
-            return;
-        }
+        if(row == grid.length-1 && column == grid[0].length-1)
+            return grid[row][column];
 
-        sum = sum + grid[row][column];
-
-        if (sum > maxGlobal) {
-            return;
-        }
-
-        if (p[row][column] != Integer.MAX_VALUE) {
-            p[row][column] = Math.min(sum, p[row][column]);
-        } else {
-            p[row][column] = sum;
-        }
-
-        if (row + 1 == p.length && column + 1 == p[0].length) {
-            maxGlobal = p[row][column];
-        }
-
+        if(p[row][column] != 0)
+            return p[row][column];
 
         //Visit down
-        visitPosition(row, column + 1, p, sum, grid);
+        int a = visitPosition(row, column + 1, p, grid);
         //Visit left
-        visitPosition(row + 1, column, p, sum, grid);
+        int b = visitPosition(row + 1, column, p, grid);
+
+        p[row][column] = grid[row][column] + Math.min(a, b);
+        return p[row][column];
     }
 
-    private void fill(int[][] a) {
-        int rows = a.length;
-        int columns = a[0].length;
-        System.out.println();
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                a[i][j] = Integer.MAX_VALUE;
-            }
-        }
-    }
-
-    private void print(int[][] a) {
-        int rows = a.length;
-        int columns = a[0].length;
-        System.out.println();
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                System.out.print(a[i][j] + " : ");
-            }
-            System.out.println();
-        }
-    }
 
 }
