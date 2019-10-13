@@ -6,7 +6,6 @@ public class Ex1 {
 
     enum Direction {R, D, L, U}
 
-    ;
 
     public static int[][] createSpiral(int n) {
         if (n <= 0) {
