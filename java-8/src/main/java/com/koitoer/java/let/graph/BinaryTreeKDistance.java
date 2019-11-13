@@ -13,6 +13,9 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+/**
+ * This is a normal BST, but as this is a binary tree you need to know the parent of each node.
+ */
 public class BinaryTreeKDistance {
 
     Map<BinaryNode, BinaryNode> parents = new HashMap<>();
@@ -41,6 +44,9 @@ public class BinaryTreeKDistance {
         Assertions.assertThat(getNodesAtJump(root, nodeA, 2)).extracting("value").containsOnly(4, 7, 1);
     }
 
+    /**
+     * Initialize seen, q and define k
+     */
     private List<BinaryNode> getNodesAtJump(BinaryNode root, BinaryNode nodeA, int k) {
         iterateTree(root, parents, null);
 
@@ -52,7 +58,15 @@ public class BinaryTreeKDistance {
         return iterateByLevel(0, k, seen, linkedList);
     }
 
+    /**
+     * Iterate by level, use the previous q with the nodes to determine the next level, before going into them
+     * verify if you already see the nodes to avoid loop, once you reach the kLevel stop and return the q.
+     */
     private List<BinaryNode> iterateByLevel(int initialLevel, int kLevel, List<BinaryNode> seen, LinkedList<BinaryNode> q) {
+
+        if (kLevel == initialLevel) {
+            return q;
+        }
 
         LinkedList q2 = new LinkedList();
         while (!q.isEmpty()) {
@@ -64,10 +78,7 @@ public class BinaryTreeKDistance {
                 }
             }
         }
-        if (kLevel == ++initialLevel) {
-            return q2;
-        }
-        return iterateByLevel(initialLevel, kLevel, seen, q2);
+        return iterateByLevel(++initialLevel, kLevel, seen, q2);
     }
 
     private List<BinaryNode> getRelatives(BinaryNode node) {
@@ -85,6 +96,9 @@ public class BinaryTreeKDistance {
         return relatives;
     }
 
+    /**
+     * Create a map that will have all the nodes and all their parents.
+     */
     private void iterateTree(BinaryNode node, Map<BinaryNode, BinaryNode> parents, BinaryNode parent) {
         if (node == null) {
             return;
