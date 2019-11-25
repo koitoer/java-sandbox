@@ -15,7 +15,7 @@ import org.junit.Test;
 public class Solution22 {
 
     @Test
-    public void test(){
+    public void test() {
         new Solution22().generateParenthesis(3);
     }
 
