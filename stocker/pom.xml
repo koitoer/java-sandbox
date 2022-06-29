@@ -19,7 +19,7 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 
 		<!-- Derby database version -->
-		<derby.version>10.14.1.0</derby.version>
+		<derby.version>10.14.2.0</derby.version>
 
 	</properties>
 	<dependencies>
